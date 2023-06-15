@@ -1,6 +1,8 @@
 package ru.sharipov.View;
 
 import ru.sharipov.Model.MyToyShop;
+import ru.sharipov.Model.Toy;
+
 import java.util.Scanner;
 
 public class Menu implements ShopMenu {
@@ -15,6 +17,10 @@ public class Menu implements ShopMenu {
         System.out.println("");
         System.out.println("3. Make a Draw! ");
         System.out.println("");
+        System.out.println("4. Add Toy ");
+        System.out.println("");
+        System.out.println("5. Change Toy chance ");
+        System.out.println("");
         System.out.println("9. Exit ");
         System.out.println();
         System.out.print("Enter a number from menu: ");
@@ -23,6 +29,8 @@ public class Menu implements ShopMenu {
         if (userInput.equals("1")) showcaseMenu(myToyShop, scanner);
         else if (userInput.equals("2")) lookAtParticipantsMenu(myToyShop, scanner);
         else if (userInput.equals("3")) drawMenu(myToyShop, scanner);
+        else if (userInput.equals("4")) addToyMenu(myToyShop, scanner);
+        else if (userInput.equals("5")) setToyChanceMenu(myToyShop, scanner);
         else if (userInput.equals("9")) {
             System.out.println();
             System.out.println("Good Bye! ");
@@ -35,6 +43,80 @@ public class Menu implements ShopMenu {
             mainMenu(myToyShop,scanner);
         }
 
+    }
+
+    public void setToyChanceMenu(MyToyShop myToyShop, Scanner scanner) {
+        System.out.println("");
+        System.out.println("-= Set Toy Chance Menu =- ");
+        System.out.println("");
+        System.out.print("Enter an ID of Toy: ");
+        String toyId = scanner.next();
+        scanner.nextLine();
+        System.out.println();
+        System.out.print("Enter a new chance: ");
+        String toyChance = scanner.next();
+        scanner.nextLine();
+        System.out.println();
+        if (!(toyId.isEmpty()) && !(toyChance.isEmpty())){
+            try {
+                int id = Integer.parseInt(toyId);
+                double chance = Double.parseDouble(toyChance);
+                if (chance > 0 && chance < 101){
+                    for (Toy toy: myToyShop.getShowcase()){
+                        if (toy.getId() == id){
+                            toy.setChance(chance);
+                        }
+                    }
+                    System.out.println("Chance changed! ");
+                    mainMenu(myToyShop,scanner);
+                } else {
+                    System.out.println("Chance can not be less than 0 and more than 100!");
+                    mainMenu(myToyShop,scanner);
+                }
+            } catch (NumberFormatException exception){
+                System.out.println("Enter a correct data! ");
+                mainMenu(myToyShop,scanner);
+            }
+        }
+    }
+
+    public void addToyMenu(MyToyShop myToyShop, Scanner scanner) {
+        System.out.println("");
+        System.out.println("-= Add Toy Menu =-");
+        System.out.println("");
+        System.out.print("Enter a Toy name: ");
+        String toyName = scanner.next();
+        scanner.nextLine();
+        System.out.println();
+        System.out.print("Enter a Toy amount: ");
+        String toyAmount = scanner.next();
+        scanner.nextLine();
+        System.out.println();
+        System.out.print("Enter a Toy chance: ");
+        String toyChance = scanner.next();
+        scanner.nextLine();
+        System.out.println();
+        if(!(toyName.isEmpty()) && !(toyAmount.isEmpty()) && !(toyChance.isEmpty())){
+            try {
+                String name = toyName;
+                int amount = Integer.parseInt(toyAmount);
+                double chance = Double.parseDouble(toyChance);
+                if (chance > 0 && chance < 101){
+                    myToyShop.getShowcase().add(new Toy(name,amount,chance));
+                    System.out.println("Toy added! ");
+                    mainMenu(myToyShop,scanner);
+                } else {
+                    System.out.println("Chance can not be less than 0 and more than 100!");
+                    mainMenu(myToyShop,scanner);
+                }
+            } catch (NumberFormatException exception){
+                System.out.println("Enter a correct data!");
+                mainMenu(myToyShop,scanner);
+            }
+        } else {
+            System.out.println("Field can not be Empty! ");
+            mainMenu(myToyShop,scanner);
+        }
     }
 
     public void drawMenu(MyToyShop myToyShop, Scanner scanner) {

@@ -10,6 +10,7 @@ public class Participant {
         this.name = name;
         this.backpack = backpack;
     }
+
     @Override
     public String toString(){
         return "Name: " + name + " | " + "Backpack: " + getBackpack();

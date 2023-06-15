@@ -9,18 +9,6 @@ public class MyToyShop implements ToyShop {
     private List<Participant> participantsList;
     private Organizer organizer;
 
-    public Organizer getOrganizer() {
-        return organizer;
-    }
-
-    public List<Participant> getParticipantsList() {
-        return participantsList;
-    }
-
-    public List<Toy> getShowcase() {
-        return showcase;
-    }
-
     public MyToyShop(List showcase, List participantsList, Organizer organizer) {
         this.showcase = showcase;
         this.participantsList = participantsList;
@@ -46,5 +34,18 @@ public class MyToyShop implements ToyShop {
     public void lookAtParticipants() {
         for (Participant participant : participantsList)
             System.out.println(participant.toString());
+    }
+
+
+    public Organizer getOrganizer() {
+        return organizer;
+    }
+
+    public List<Participant> getParticipantsList() {
+        return participantsList;
+    }
+
+    public List<Toy> getShowcase() {
+        return showcase;
     }
 }

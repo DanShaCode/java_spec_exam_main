@@ -17,9 +17,9 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
 
         List<Toy> showcase = new ArrayList<>();
-        showcase.add(new Toy("Bear",5,51.34));
-        showcase.add(new Toy("Doll", 5, 12.65));
-        showcase.add(new Toy("Spider-man", 5, 5));
+        showcase.add(new Toy("Bear",1,51.34));
+        showcase.add(new Toy("Doll", 1, 12.65));
+        showcase.add(new Toy("Spider-man", 1, 5));
 
         List<Participant> participantList = new LinkedList<>();
         List<Toy> danisBackpack = new ArrayList<>();
