@@ -17,15 +17,18 @@ public class MyToyShop implements ToyShop {
 
     @Override
     public void lookAtShowcase() {
-        for (Toy toy : showcase)
-            System.out.println(toy.toString());
+        if (!showcase.isEmpty())
+            for (Toy toy : showcase)
+                System.out.println(toy.toString());
+        else
+            System.out.println("Showcase is Empty! ");
     }
 
-    public void correctShowcase(){
+    public void correctShowcase() {
         Iterator<Toy> iterator = showcase.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Toy toy = iterator.next();
-            if (toy.getAmount() == 0){
+            if (toy.getAmount() == 0) {
                 iterator.remove();
             }
         }

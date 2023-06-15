@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Organizer {
 
-    public static boolean rollTheCube(Toy toy) {
+    public static boolean rollTheToy(Toy toy) {
         return toy.getChance() <= new Random().nextInt(1, 101);
     }
 
@@ -18,7 +18,6 @@ public class Organizer {
 
             while (!participantsQueue.isEmpty()) {
                 Participant participant = participantsQueue.poll();
-                System.out.println("Draw is starting for: " + participant.getName() + "!");
                 for (Toy toy : myToyShop.getShowcase()) {
                     if (toy.getAmount() > 0) {
                         try {
@@ -26,7 +25,7 @@ public class Organizer {
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                        if (rollTheCube(toy)) {
+                        if (rollTheToy(toy)) {
                             toy.removeToy(1);
                             Toy participantToy = new Toy(toy.getName(), 1, toy.getChance());
                             participantToy.setId(toy.getId());
@@ -46,7 +45,7 @@ public class Organizer {
             }
         } else {
             System.out.println("Sorry nothing to draw!");
-
+            System.out.println();
         }
     }
 }
