@@ -7,7 +7,8 @@ import java.util.Random;
 public class Organizer {
 
     public static boolean rollTheToy(Toy toy) {
-        return toy.getChance() <= new Random().nextInt(1, 101);
+
+        return toy.getChance() >= new Random().nextInt(1, 101);
     }
 
     public void startDraw(MyToyShop myToyShop) {
